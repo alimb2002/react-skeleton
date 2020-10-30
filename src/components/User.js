@@ -1,4 +1,5 @@
 import React, {useState , useEffect} from 'react'
+import SkeletonProfile from './skeletons/SkeletonProfile';
 
 const User = () => {
     const [user, setUser] =  useState(null);
@@ -7,7 +8,6 @@ const User = () => {
        .then( res => res.json())
        .then( res => setUser(res) )
     }, []);
-
 
     return (
         <div className="user">
@@ -18,7 +18,7 @@ const User = () => {
                 <p>{user.email}</p>
                 <a href={user.website}>{user.website}</a>
             </div> 
-        ) : ('<h2>loading</h2>') }
+        ) : <SkeletonProfile/> }
         </div>
     )
 }
