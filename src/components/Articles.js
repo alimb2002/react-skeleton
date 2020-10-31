@@ -4,12 +4,13 @@ import SkeletonArticle from './skeletons/SkeletonArticle';
 
 const Articles = () => {
     const [articles , setArticles] = useState(null);
-    useEffect( () => 
-    fetch('https://jsonplaceholder.typicode.com/posts') 
-    .then( res => res.json() )
-    .then( res=> setArticles(res))
-    .catch(err => console.log(err))
-    )
+    useEffect( () => {
+        setTimeout( async() => { 
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts') 
+    const data = await res.json();
+    setArticles(data);
+    },5000 )
+});
     return (
         <div className="articles">
             <h2>Articles</h2>
@@ -20,7 +21,7 @@ const Articles = () => {
                 <p>{article.body}</p>
             </div>
             ) ) ) :
-             ([1,2,3,4,5].map(n => <SkeletonArticle key={n} theme="dark" /> )) }
+             ([1,2,3,4,5].map(n => <SkeletonArticle key={n} theme="light" /> )) }
         </div>
     )
 }

@@ -4,10 +4,12 @@ import SkeletonProfile from './skeletons/SkeletonProfile';
 const User = () => {
     const [user, setUser] =  useState(null);
     useEffect( () => {
-       fetch('https://jsonplaceholder.typicode.com/users/1')
-       .then( res => res.json())
-       .then( res => setUser(res) )
-    }, []);
+        setTimeout (async()=> {
+            const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
+            const data = await res.json();
+            setUser(data);
+        },5000 )
+    });
 
     return (
         <div className="user">
